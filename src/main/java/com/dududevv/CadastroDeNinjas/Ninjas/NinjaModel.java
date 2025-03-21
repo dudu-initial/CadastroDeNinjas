@@ -1,6 +1,9 @@
-package com.dududevv.CadastroDeNinjas;
+package com.dududevv.CadastroDeNinjas.Ninjas;
 
+import com.dududevv.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 //Entity transforma uma classe em uma entidade do banco de dados.
 //JPA significa Java Persistence API
@@ -11,9 +14,19 @@ public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+    // @ManyToOne - Um ninja tem uma unica missão
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // Foreign Key ou chave estrangeira
+    private MissoesModel missoes;
+
+
 
     public NinjaModel() {
 
